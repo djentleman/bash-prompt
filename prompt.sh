@@ -7,7 +7,7 @@ function set_prompt()
 
     prompt="[\#]\u@\h:\W"
     branch=$(git branch 2> /dev/null | grep \* | awk '{print $2}')
-    untracked=$(git diff --name-only 2> /dev/null)
+    untracked="$(git diff --name-only 2> /dev/null)$(git ls-files --others --exclude-standard 2> /dev/null)"
     uncommited=$(git status -s 2> /dev/null)
     if [[ "$untracked" = "" ]];
     then
