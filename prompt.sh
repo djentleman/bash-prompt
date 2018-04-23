@@ -5,7 +5,7 @@ function set_prompt()
     GREEN="\[\033[32;1m\]";
     OFF="\[\033[m\]";
     prompt="[\#]\u@\h:\W";
-    branch=$(git branch 2> /dev/null | grep \* | awk '{print $2}');
+    branch=$(git status 2> /dev/null | head -n 1 | awk '{print $3}');
     untracked="$(git diff --name-only 2> /dev/null)$(git ls-files --others --exclude-standard 2> /dev/null)";
     uncommited=$(git status -s 2> /dev/null);
     repo_name=$(basename $(git rev-parse --show-toplevel 2> /dev/null) 2> /dev/null);
